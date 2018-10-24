@@ -1,6 +1,6 @@
 # emonvue
 
-> A Vue.js project
+> A Vue.js project that interacts with the emoncms over javascript. No serverside code (yet)
 
 ## Build Setup
 
