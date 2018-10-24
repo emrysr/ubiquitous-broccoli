@@ -38,7 +38,10 @@
       <div class="container has-text-centered">
         <div v-if="!hideNotification" class="notification has-text-dark">
           <button class="delete" @click="hideNotification = true"></button>
-          <strong class="has-text-primary">VueJs emoncms api integration test</strong><br>Search emoncms api for feeds, inputs, dashboards, graphs or modules. <em>Concept only</em>
+          <strong class="has-text-primary">VueJs emoncms api integration test.<em><u>Concept only.</u></em></strong><br>
+          Search emoncms api for feeds, inputs, dashboards, graphs or modules. <br>
+          Uses a <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code>">HMAC</a> (using aes-128-cbc) to transmit the authentication credentials.
+          Additional emoncms API endpoints would be required to enable this demo to fully be functional.
         </div>
         <h1 class="title">Search</h1>
         <div id="search-control"  class="control has-icons-left has-icons-right is-large" :class="{ 'is-loading': state=='loading'}">
@@ -108,9 +111,9 @@ export default {
           encrypted: this.emoncms.encrypt('node=emontx&data={power1:100,power2:200,power3:300}')
         }
       }
-      console.log(options.params)
+      // console.log(options.params)
       this.$http
-        .get('/emoncms/input/get?apikey=' + this.emoncms.APIKEY, options)
+        .get(process.env.ROOT_API + '/input/get?apikey=' + process.env.API_KEY, options)
         .then(function (response) {
           that.results = response.data
           that.state = 'ready'

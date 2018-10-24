@@ -1,12 +1,8 @@
 /* eslint-disable indent */
 const crypto = require('crypto')
-// var AES = require('aes')
-const APIKEY = 'cb9579be83678b89a5eb0faea08ad839'
-
 class EmonCms {
     constructor () {
-        this.APIKEY = APIKEY // Must be 256 bytes (32 characters)
-        this.APIKEYLEN = APIKEY.length
+        this.APIKEYLEN = process.env.API_KEY.length
         this.HASH = this.getHash('123')
         this.IV = crypto.randomBytes(16) // 2. create an initalization vector
     }
@@ -24,7 +20,7 @@ class EmonCms {
 */
     }
     getHash (string) {
-        let hmac = crypto.createHmac('sha1', APIKEY)
+        let hmac = crypto.createHmac('sha1', process.env.API_KEY)
         hmac.update(string)
         return hmac.digest('base64')
     }
@@ -34,7 +30,7 @@ class EmonCms {
         // .update(data)
         // .digest('hex')
 
-        let cipher = crypto.createCipheriv('aes-128-cbc', Buffer.alloc(APIKEY.length / 2), this.IV)
+        let cipher = crypto.createCipheriv('aes-128-cbc', Buffer.alloc(process.env.API_KEY.length / 2), this.IV)
         let encrypted = cipher.update(text)
 
         encrypted = Buffer.concat([encrypted, cipher.final()])
