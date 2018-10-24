@@ -20,7 +20,7 @@
               <router-link :to="{ name: ''}" class="navbar-item" active-class="is-active">Home</router-link>
               <router-link :to="{ name: ''}" class="navbar-item"><span class="icon is-medium"><i class="fas fa-user"></i></span> User</router-link>
               <span class="navbar-item">
-                <a class="button is-success is-inverted" href="https://github.com/emoncms/emoncms">
+                <a class="button is-success is-inverted" href="https://github.com/emrysr/ubiquitous-broccoli">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
